@@ -1,0 +1,188 @@
+<!doctype html>
+
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="HandheldFriendly" content="true">
+        <meta name="viewport" content="initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+        <link rel="stylesheet" href="styles.css" type="text/css"/>
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script src="../cssanimations.js" type="text/javascript"></script>
+ 
+        <title>CSS Animation Plugins Demo</title>
+    </head>
+    <body>
+        
+        <h1>CSS Animation Plugins Demo</h1>
+
+        <h2>cssSlideToggle:</h2>
+
+        <code>
+            var form = $('form[name="slide-demo"]');<br />
+            var animationElement = $('#slide-element');<br /><br />
+            form.find('button').on('click', function() {<br />
+            &nbsp;&nbsp;&nbsp;<br />
+            &nbsp;&nbsp;&nbsp;var duration = form.find('input[name="duration"]').val();<br />
+            &nbsp;&nbsp;&nbsp;<br />
+            &nbsp;&nbsp;&nbsp;animationElement.html('');<br />
+            &nbsp;&nbsp;&nbsp;<br />
+            &nbsp;&nbsp;&nbsp;animationElement.cssSlideToggle(duration, function() {<br />
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;animationElement.html('Done!');<br />
+            &nbsp;&nbsp;&nbsp;});<br />
+            });
+        </code>
+
+        <form action="#" name="slide-demo" class="clearfix">
+            <fieldset><label>Duration:</label><input type="number" value="500" name="duration" /></fieldset>
+            <fieldset><button class="go">Go</button></fieldset>
+        </form>
+        <div class="animation-element" id="slide-element">
+        </div>
+
+         <h2>cssFadeToggle:</h2>
+
+        <code>
+            var form = $('form[name="fade-demo"]');<br />
+            var animationElement = $('#fade-element');<br />
+            <br />
+            form.find('button').on('click', function() {<br />
+            &nbsp;&nbsp;&nbsp;<br />
+            &nbsp;&nbsp;&nbsp;var duration = form.find('input[name="duration"]').val();<br />
+            &nbsp;&nbsp;&nbsp;<br />
+            &nbsp;&nbsp;&nbsp;animationElement.html('');<br />
+            &nbsp;&nbsp;&nbsp;<br />
+            &nbsp;&nbsp;&nbsp;animationElement.cssFadeToggle(duration, function() {<br />
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;animationElement.html('Done!');<br />
+            &nbsp;&nbsp;&nbsp;});<br />
+            });
+        </code>
+
+        <form action="#" name="fade-demo" class="clearfix">
+            <fieldset><label>Duration:</label><input type="number" value="500" name="duration" /></fieldset>
+            <fieldset><button class="go">Go</button></fieldset>
+        </form>
+        <div class="animation-element" id="fade-element">
+        </div>
+
+        <h2>cssAnimate:</h2>
+
+        <code>
+            var form = $('form[name="animate-demo"]');<br />
+            var animationElement = $('#animate-element');<br />
+            <br />
+            form.find('button').on('click', function() {<br />
+            &nbsp;&nbsp;&nbsp;<br />
+            &nbsp;&nbsp;&nbsp;var duration = form.find('input[name="duration"]').val();<br />
+            &nbsp;&nbsp;&nbsp;var width = form.find('input[name="width"]').val();<br />
+            &nbsp;&nbsp;&nbsp;var height = form.find('input[name="height"]').val();<br />
+            &nbsp;&nbsp;&nbsp;var opacity = form.find('input[name="opacity"]').val();<br />
+            &nbsp;&nbsp;&nbsp;var rotation = form.find('input[name="rotation"]').val();<br />
+            &nbsp;&nbsp;&nbsp;<br />
+            &nbsp;&nbsp;&nbsp;animationElement.html('');<br />
+            &nbsp;&nbsp;&nbsp;<br />
+            &nbsp;&nbsp;&nbsp;console.log(width, height, opacity, rotation)<br />
+            &nbsp;&nbsp;&nbsp;<br />
+            &nbsp;&nbsp;&nbsp;animationElement.cssAnimate({<br />
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'width' : width,<br />
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'height' : height,<br />
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'opacity' : opacity,<br />
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'transform' : 'rotate(' + rotation + 'deg)'<br />
+            &nbsp;&nbsp;&nbsp;}, duration, function() {<br />
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;animationElement.html('Done!');<br />
+            &nbsp;&nbsp;&nbsp;});<br />
+            });
+        </code>
+
+        <form action="#" name="animate-demo" class="clearfix">
+            <fieldset><label>Duration:</label><input type="number" value="500" name="duration" /></fieldset>
+            <fieldset><label>Width:</label><input type="number" value="200" name="width" /></fieldset>
+            <fieldset><label>Height:</label><input type="number" value="200" name="height" /></fieldset>
+            <fieldset><label>Opacity:</label><input type="number" max="1" value="1" name="opacity" /></fieldset>
+            <fieldset><label>Rotation:</label><input type="number" value="0" name="rotation" /></fieldset>
+            <fieldset><button class="go">Go</button></fieldset>
+        </form>
+        <div class="animation-element" id="animate-element">
+        </div>
+
+        
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+
+    </body>
+    <script type="text/javascript">
+
+        $('form').submit(function(e) { e.preventDefault() });
+
+        // Slide Toggle
+        (function() {
+            var form = $('form[name="slide-demo"]');
+            var animationElement = $('#slide-element');
+
+            form.find('button').on('click', function() {
+
+                var duration = form.find('input[name="duration"]').val();
+
+                animationElement.html('');
+
+                animationElement.cssSlideToggle(duration, function() {
+                    animationElement.html('Done!');
+                });
+            });
+        })();
+
+        // Fade Toggle
+        (function() {
+            var form = $('form[name="fade-demo"]');
+            var animationElement = $('#fade-element');
+
+            form.find('button').on('click', function() {
+
+                var duration = form.find('input[name="duration"]').val();
+
+                animationElement.html('');
+
+                animationElement.cssFadeToggle(duration, function() {
+                    animationElement.html('Done!');
+                });
+            });
+        })();
+
+        // Animate
+        (function() {
+            var form = $('form[name="animate-demo"]');
+            var animationElement = $('#animate-element');
+
+            form.find('button').on('click', function() {
+
+                var duration = form.find('input[name="duration"]').val();
+                var width = form.find('input[name="width"]').val();
+                var height = form.find('input[name="height"]').val();
+                var opacity = form.find('input[name="opacity"]').val();
+                var rotation = form.find('input[name="rotation"]').val();
+
+                animationElement.html('');
+
+                console.log(width, height, opacity, rotation)
+
+                animationElement.cssAnimate({
+                    'width' : width,
+                    'height' : height,
+                    'opacity' : opacity,
+                    'transform' : 'rotate(' + rotation + 'deg)' 
+                }, duration, function() {
+                    animationElement.html('Done!');
+                });
+            });
+        })();
+
+    </script>
+</html>
+
