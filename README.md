@@ -1,4 +1,4 @@
-# jQuery CSS animation plugins
+# jQuery CSS3 animation plugins
 
 These three small plugins were created as simple analogues of three commonly used jQuery animation methods: `slideToggle`, `fadeToggle`, and `animate`, using CSS3 transitions rather than an interval to improve performance.
 
