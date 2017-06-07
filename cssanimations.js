@@ -1,12 +1,14 @@
 /*
- * jQuery cssAnimate:
- * CSS3 analogue for the jQuery animate method.
- * PARAMS:
- * ( properties: css property/properties to animate towards,
- * [duration: of animation in milliseconds - default 500],
- * [easing: set as a CSS3 easing value, e.g. 'ease-in-out' or 'cubic-bezier(0,0,1,1)' - default 'ease'],
- * [callback: function to call upon completion of animation] )
- */
+* jQuery CSS animation plugins
+* cssAnimate(); cssFadeToggle(); cssSlideToggle();
+* Copyright (c) 2017 Adam Lafene
+* https://github.com/EdamL/jquery-css-animation
+*
+* Licensed under the terms of the MIT and GPL licenses:
+*   http://www.opensource.org/licenses/mit-license.php
+*   http://www.gnu.org/licenses/gpl.html
+*/
+
 (function($){
     $.fn.cssAnimate = function(param1, param2, param3, param4) {
 
@@ -43,14 +45,6 @@
     };
 })(jQuery);
 
-/*
-* function cssFadeToggle:
-* CSS3 analogue for the jQuery fadeToggle method.
-* PARAMS:
-* ([duration: of animation in milliseconds - default 500],
-* [easing: set as a CSS3 easing value, e.g. 'ease-in-out' or 'cubic-bezier(0,0,1,1)' - default 'linear'],
-* [callback: function to call upon completion of animation])
-*/
 (function($){
 	$.fn.cssFadeToggle = function(param1, param2, param3) {
 
@@ -93,15 +87,6 @@
 	};
 })(jQuery);
 
-/*
- * function cssSlideToggle:
- * CSS3 analogue for the jQuery slideToggle method.
- * NOTE: because padding and margin are also included in the transition, avoid !important top padding/margin styles on sliding elements.
- * PARAMS:
- * ([duration: of animation in milliseconds - default 500],
- * [easing: set as a CSS3 easing value, e.g. 'ease-in-out' or 'cubic-bezier(0,0,1,1)' - default 'linear'],
- * [callback: function to call upon completion of animation])
- */
 (function($){
     $.fn.cssSlideToggle = function(param1, param2, param3) {
         var callback = ((param2 && $.isFunction(param2)) ? param2 :
