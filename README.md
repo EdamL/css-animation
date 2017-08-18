@@ -17,6 +17,7 @@ Default: `'ease'`
 ### complete
 Function to call upon completion of animation.
 
+
 ## cssFadeToggle([duration][,easing][,complete])
 
 CSS3 analogue for the jQuery `fadeToggle()` method.<br />
@@ -29,12 +30,13 @@ Default: `'ease'`
 ### complete
 Function to call upon completion of animation.
 
+
 ## cssAnimate(properties, [duration][,easing][,complete])
 
 CSS3 analogue for the jQuery `animate()` method.<br />
 ### properties
 An object containing the CSS properties for the element to animate toward.<br />
-NOTE: Unlike with jQuery `animate()` the full CSS property needs to be passed, e.g. `20px`, not `20`.<br />
+NOTE: Unlike with jQuery `animate()` the full CSS value should always be passed for every property, e.g. `'height' : '20px'`, not `'height' : 20`.<br />
 ### duration
 Duration of animation in milliseconds.<br />
 Default: `500`
@@ -43,6 +45,7 @@ A CSS3 easing value, e.g. `ease-in-out`, `linear` or `cubic-bezier(0,0,1,1)`.<br
 Default: `'ease'`
 ### complete
 Function to call upon completion of animation.
+
 
 ## Usage
 
