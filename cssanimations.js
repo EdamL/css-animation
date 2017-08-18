@@ -1,7 +1,7 @@
 /*
 * CSS animations plugin 1.0
 * Copyright (c) 2017 Adam Lafene
-* https://github.com/EdamL/jquery-css-animation
+* https://github.com/EdamL/css-animation
 *
 * Licensed under the terms of the MIT and GPL licenses:
 *   http://www.opensource.org/licenses/mit-license.php
