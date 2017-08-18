@@ -8,15 +8,7 @@
 *   http://www.gnu.org/licenses/gpl.html
 */
 
-(function (root, factory) {
-    if ( typeof define === 'function' && define.amd ) {
-        define([], factory(root));
-    } else if ( typeof exports === 'object' ) {
-        module.exports = factory(root);
-    } else {
-        root.floatingCarousel = factory(root);
-    }
-})(typeof global !== 'undefined' ? global : this.window || this.global, function (root) {
+(function (window) {
 
     'use strict';
     //
@@ -118,7 +110,7 @@
         
         var domObj = this.domObj || this;
 
-        if (domObj.length < 1)
+        if (domObj.length < 1 || !supports)
             return false;
 
         var callback = ((param2 && typeof param2 === "function") ? param2 :
@@ -227,7 +219,7 @@
         
         var domObj = this.domObj || this;
 
-        if (domObj.length < 1)
+        if (domObj.length < 1 || !supports)
             return false;
 
         var callback = ((param2 && typeof param2 === "function") ? param2 :
@@ -299,7 +291,7 @@
 
         var domObj = this.domObj || this;
 
-        if (domObj.length < 1)
+        if (domObj.length < 1 || !supports)
             return false;
 
         if (!param1 || typeof(param1) !== 'object') {
@@ -343,4 +335,4 @@
         });
     };
     
-});
+})(window);
