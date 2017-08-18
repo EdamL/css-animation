@@ -1,8 +1,8 @@
-# jQuery CSS3 animation plugins
+# CSS animation plugin
 
-These three small plugins were created as simple analogues of three commonly used jQuery animation methods: `slideToggle`, `fadeToggle`, and `animate`, using CSS3 transitions rather than an interval to improve performance.
+The intention of this project is to leverage the obvious benefits of CSS3 animations in a lightweight, easy to use and dependency-free Javascript plugin. The plugin contains three public methods, which mirror three common jQuery animation methods: `slideToggle`, `fadeToggle`, and `animate`, except with the use of CSS3 transitions rather than intervals a significant improvement in performance is achieved.
 
-For examples of usage, see the [demos](https://github.com/EdamL/jquery-css-animation/tree/master/demo).
+The three methods are as follows:
 
 ## cssSlideToggle([duration][,easing][,complete])
 
@@ -34,6 +34,7 @@ Function to call upon completion of animation.
 CSS3 analogue for the jQuery `animate()` method.<br />
 ### properties
 An object containing the CSS properties for the element to animate toward.<br />
+NOTE: Unlike with jQuery `animate()` the full CSS property needs to be passed, e.g. `20px`, not `20`.<br />
 ### duration
 Duration of animation in milliseconds.<br />
 Default: `500`
@@ -42,3 +43,21 @@ A CSS3 easing value, e.g. `ease-in-out`, `linear` or `cubic-bezier(0,0,1,1)`.<br
 Default: `'ease'`
 ### complete
 Function to call upon completion of animation.
+
+## Usage
+
+### jQuery
+The methods can be called on a jQuery object in the usual way:
+```js
+  $('#element-to-animate').cssSlideToggle();
+```
+
+### Vanilla JS
+
+Or, in the absence of jQuery, the methods can be called by passing a querySelector string to the `CssAni` namespace:
+
+```js
+  CssAni('#element-to-animate').cssSlideToggle();
+```
+
+For more examples of usage, see the [demos](https://github.com/EdamL/css-animation/tree/master/demo).
