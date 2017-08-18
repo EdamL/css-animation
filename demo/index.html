@@ -12,13 +12,13 @@
         <link rel="stylesheet" href="styles.css" type="text/css"/>
 
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-        <script src="../cssanimations.min.js" type="text/javascript"></script>
+        <script src="../cssanimations.js" type="text/javascript"></script>
  
-        <title>CSS Animation Plugins Demo</title>
+        <title>CSS animations Plugin Demo</title>
     </head>
     <body>
         
-        <h1>CSS Animation Plugins Demo</h1>
+        <h1>CSS animations Plugin Demo</h1>
 
         <h2>cssSlideToggle:</h2>
 
@@ -28,10 +28,11 @@
             form.find('button').on('click', function() {<br />
             &nbsp;&nbsp;&nbsp;<br />
             &nbsp;&nbsp;&nbsp;var duration = form.find('input[name="duration"]').val();<br />
+            &nbsp;&nbsp;&nbsp;var easing = form.find('input[name="easing"]').val();<br />
             &nbsp;&nbsp;&nbsp;<br />
             &nbsp;&nbsp;&nbsp;animationElement.html('');<br />
             &nbsp;&nbsp;&nbsp;<br />
-            &nbsp;&nbsp;&nbsp;animationElement.cssSlideToggle(duration, function() {<br />
+            &nbsp;&nbsp;&nbsp;animationElement.cssSlideToggle(duration, easing, function() {<br />
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;animationElement.html('Done!');<br />
             &nbsp;&nbsp;&nbsp;});<br />
             });
@@ -39,9 +40,10 @@
 
         <form action="#" name="slide-demo" class="clearfix">
             <fieldset><label>Duration:</label><input type="number" value="500" name="duration" /></fieldset>
+            <fieldset><label>Easing:</label><input type="text" value="ease" name="easing" /></fieldset>
             <fieldset><button class="go">Go</button></fieldset>
         </form>
-        <div class="animation-element" id="slide-element">
+        <div class="animation-element slide-element" id="slide-element">
         </div>
 
          <h2>cssFadeToggle:</h2>
@@ -53,10 +55,11 @@
             form.find('button').on('click', function() {<br />
             &nbsp;&nbsp;&nbsp;<br />
             &nbsp;&nbsp;&nbsp;var duration = form.find('input[name="duration"]').val();<br />
+            &nbsp;&nbsp;&nbsp;var easing = form.find('input[name="easing"]').val();<br />
             &nbsp;&nbsp;&nbsp;<br />
             &nbsp;&nbsp;&nbsp;animationElement.html('');<br />
             &nbsp;&nbsp;&nbsp;<br />
-            &nbsp;&nbsp;&nbsp;animationElement.cssFadeToggle(duration, function() {<br />
+            &nbsp;&nbsp;&nbsp;animationElement.cssFadeToggle(duration, easing, function() {<br />
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;animationElement.html('Done!');<br />
             &nbsp;&nbsp;&nbsp;});<br />
             });
@@ -64,10 +67,12 @@
 
         <form action="#" name="fade-demo" class="clearfix">
             <fieldset><label>Duration:</label><input type="number" value="500" name="duration" /></fieldset>
+            <fieldset><label>Easing:</label><input type="text" value="ease" name="easing" /></fieldset>
             <fieldset><button class="go">Go</button></fieldset>
         </form>
-        <div class="animation-element" id="fade-element">
+        <div class="animation-element fade-element" id="fade-element">
         </div>
+
 
         <h2>cssAnimate:</h2>
 
@@ -82,17 +87,18 @@
             &nbsp;&nbsp;&nbsp;var height = form.find('input[name="height"]').val();<br />
             &nbsp;&nbsp;&nbsp;var opacity = form.find('input[name="opacity"]').val();<br />
             &nbsp;&nbsp;&nbsp;var rotation = form.find('input[name="rotation"]').val();<br />
+            &nbsp;&nbsp;&nbsp;var easing = form.find('input[name="easing"]').val();<br />
             &nbsp;&nbsp;&nbsp;<br />
             &nbsp;&nbsp;&nbsp;animationElement.html('');<br />
             &nbsp;&nbsp;&nbsp;<br />
             &nbsp;&nbsp;&nbsp;console.log(width, height, opacity, rotation)<br />
             &nbsp;&nbsp;&nbsp;<br />
             &nbsp;&nbsp;&nbsp;animationElement.cssAnimate({<br />
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'width' : width,<br />
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'height' : height,<br />
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'width' : width + 'px',<br />
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'height' : height + 'px',<br />
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'opacity' : opacity,<br />
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'transform' : 'rotate(' + rotation + 'deg)'<br />
-            &nbsp;&nbsp;&nbsp;}, duration, function() {<br />
+            &nbsp;&nbsp;&nbsp;}, duration, easing, function() {<br />
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;animationElement.html('Done!');<br />
             &nbsp;&nbsp;&nbsp;});<br />
             });
@@ -102,8 +108,9 @@
             <fieldset><label>Duration:</label><input type="number" value="500" name="duration" /></fieldset>
             <fieldset><label>Width:</label><input type="number" value="200" name="width" /></fieldset>
             <fieldset><label>Height:</label><input type="number" value="200" name="height" /></fieldset>
-            <fieldset><label>Opacity:</label><input type="number" max="1" value="1" name="opacity" /></fieldset>
+            <fieldset><label>Opacity:</label><input type="number" max="1" value="1" name="opacity" step="0.01" /></fieldset>
             <fieldset><label>Rotation:</label><input type="number" value="0" name="rotation" /></fieldset>
+            <fieldset><label>Easing:</label><input type="text" value="ease" name="easing" /></fieldset>
             <fieldset><button class="go">Go</button></fieldset>
         </form>
         <div class="animation-element" id="animate-element">
@@ -129,15 +136,17 @@
             form.find('button').on('click', function() {
 
                 var duration = form.find('input[name="duration"]').val();
+                var easing = form.find('input[name="easing"]').val();
 
                 animationElement.html('');
 
-                animationElement.cssSlideToggle(duration, function() {
+                animationElement.cssSlideToggle(duration, easing, function() {
                     animationElement.html('Done!');
                 });
             });
         })();
 
+        
         // Fade Toggle
         (function() {
             var form = $('form[name="fade-demo"]');
@@ -146,10 +155,11 @@
             form.find('button').on('click', function() {
 
                 var duration = form.find('input[name="duration"]').val();
+                var easing = form.find('input[name="easing"]').val();
 
                 animationElement.html('');
 
-                animationElement.cssFadeToggle(duration, function() {
+                animationElement.cssFadeToggle(duration, easing, function() {
                     animationElement.html('Done!');
                 });
             });
@@ -167,17 +177,16 @@
                 var height = form.find('input[name="height"]').val();
                 var opacity = form.find('input[name="opacity"]').val();
                 var rotation = form.find('input[name="rotation"]').val();
+                var easing = form.find('input[name="easing"]').val();
 
                 animationElement.html('');
 
-                console.log(width, height, opacity, rotation)
-
                 animationElement.cssAnimate({
-                    'width' : width,
-                    'height' : height,
+                    'width' : width + 'px',
+                    'height' : height + 'px',
                     'opacity' : opacity,
                     'transform' : 'rotate(' + rotation + 'deg)' 
-                }, duration, function() {
+                }, duration, easing, function() {
                     animationElement.html('Done!');
                 });
             });
