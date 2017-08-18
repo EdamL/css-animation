@@ -2,7 +2,7 @@
 
 These three small plugins were created as simple analogues of three commonly used jQuery animation methods: `slideToggle`, `fadeToggle`, and `animate`, using CSS3 transitions rather than an interval to improve performance.
 
-For examples of usage, see the `demo` folder.
+For examples of usage, see the [demos](https://github.com/EdamL/jquery-css-animation/tree/master/demo).
 
 ## cssSlideToggle([duration][,easing][,complete])
 
