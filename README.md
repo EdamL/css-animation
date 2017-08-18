@@ -1,5 +1,7 @@
 # CSS animation plugin
 
+Current version: 1.0
+
 The intention of this project is to leverage the obvious benefits of CSS3 animations in a lightweight, easy to use and dependency-free Javascript plugin. The plugin contains three public methods, which mirror three common jQuery animation methods: `slideToggle`, `fadeToggle`, and `animate`, except with the use of CSS3 transitions rather than intervals a significant improvement in performance is achieved.
 
 The three methods are as follows:
