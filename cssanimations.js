@@ -1,6 +1,6 @@
 /*
-* CSS animations plugin 1.0
-* Copyright (c) 2017 Adam Lafene
+* CSS animations plugin 1.01
+* Copyright (c) 2019 Adam Lafene
 * https://github.com/EdamL/css-animation
 *
 * Licensed under the terms of the MIT and GPL licenses:
@@ -113,48 +113,69 @@
         if (domObj.length < 1 || !supports)
             return false;
 
-        var callback = ((param2 && typeof param2 === "function") ? param2 :
-            (param3 && typeof param3 === "function") ? param3 : '');
-        var duration = (param1) ? parseInt(param1) : 500;
+        var callback = ((param1 && typeof param1 === "function") ? param1 :
+                        (param2 && typeof param2 === "function") ? param2 :
+                        (param3 && typeof param3 === "function") ? param3 : '');
+        var duration = (param1 && typeof param1 !== "function") ? parseInt(param1) : 500;
         var easing = (param2 && typeof param2 !== "function") ? param2 : 'ease';
 
         forEach(domObj, function(obj, i) {
+            
             // for iterating through jQuery objects
-            if (obj.nodeType !== 1)
+            if (obj.nodeType !== 1 || isNaN(i))
                 return;
 
             var objStyle = window.getComputedStyle(obj);
 
             var display = objStyle.getPropertyValue('display');
-            var objHeight = parseInt(objStyle.getPropertyValue('height'));
-            var endHeight, endPaddingTop, endPaddingBottom, endMarginTop, endMarginBottom;
+            var isBorderBox = objStyle.getPropertyValue('box-sizing') == 'border-box' ? true : false;
+            var objHeight, endHeight, endPaddingTop, endPaddingBottom, endMarginTop, endMarginBottom;
             var objIsVisible;
 
             // setup initial properties
             if (display === 'none') {
 
+                // remove padding and margin - position absolute and set opacity to 0 so we can get height
                 setProperties(obj, {
-                    'max-height': 0,
-                    'padding-top' : 0,
-                    'padding-bottom' : 0,
                     'margin-top' : 0,
                     'margin-bottom' : 0,
                     'overflow' : 'hidden',
-                    'display' : ''
+                    'display' : '',
+                    'opacity' : 0,
+                    'position' : 'absolute'
                 });
 
                 // if element is set to {display : none} in the stylesheet, set to default display value for that node type
                 if (objStyle.getPropertyValue('display') === 'none')
                     obj.style.display = getDefaultProperty(obj, 'display');
 
+                //get default obj height
+                objHeight = obj.offsetHeight;
+
+                // reset opacity and set obj height to 0
+                setProperties(obj, {
+                    'padding-top' : 0,
+                    'padding-bottom' : 0,
+                    'max-height': 0,
+                    'opacity' : '',
+                    'position' : ''
+                });
+
                 endHeight = objHeight;
                 endPaddingTop = '';
                 endPaddingBottom = '';
                 endMarginTop = '';
                 endMarginBottom = '';
+
             }
             else {
                 objIsVisible = true;
+                
+                //get default obj height minus top and bottom padding
+                objHeight = obj.offsetHeight;
+
+                if (!isBorderBox)
+                     objHeight = objHeight - (parseInt(objStyle.getPropertyValue('padding-top')) - parseInt(objStyle.getPropertyValue('padding-bottom')));
 
                 setProperties(obj, {
                     'max-height': objHeight + 'px'
@@ -222,14 +243,15 @@
         if (domObj.length < 1 || !supports)
             return false;
 
-        var callback = ((param2 && typeof param2 === "function") ? param2 :
-            (param3 && typeof param3 === "function") ? param3 : '');
-        var duration = (param1) ? parseInt(param1) : 500;
+        var callback = ((param1 && typeof param1 === "function") ? param1 :
+                        (param2 && typeof param2 === "function") ? param2 :
+                        (param3 && typeof param3 === "function") ? param3 : '');
+        var duration = (param1 && typeof param1 !== "function") ? parseInt(param1) : 500;
         var easing = (param2 && typeof param2 !== "function") ? param2 : 'ease';
 
         forEach(domObj, function(obj, i) {
             // for iterating through jQuery objects
-            if (obj.nodeType !== 1)
+            if (obj.nodeType !== 1 || isNaN(i))
                 return;
 
             var objStyle = window.getComputedStyle(obj);
@@ -305,7 +327,7 @@
 
         forEach(domObj, function(obj, i) {
             // for iterating through jQuery objects
-            if (obj.nodeType !== 1)
+            if (obj.nodeType !== 1 || isNaN(i))
                 return;
 
             // do the animation
